@@ -7,48 +7,48 @@ chromedriver_path = r"./chromedriver"
 options = webdriver.ChromeOptions()  # 配置 chrome 启动属性
 # 此步骤很重要，设置为开发者模式，防止被各大网站识别出来使用了Selenium
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
-browser = webdriver.Chrome(executable_path=chromedriver_path, options=options)
-wait = WebDriverWait(browser, 10)  # 超时时长为10s
+driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
+wait = WebDriverWait(driver, 10)  # 超时时长为10s
 
 
 def login():
-    browser.get("https://yushou.jd.com/member/qualificationList.action")
+    driver.get("https://yushou.jd.com/member/qualificationList.action")
     print("1分钟后开抢!")
     time.sleep(60)
 
+
 def buy(kill_time):
     i = 0
+    item_url = driver.find_element_by_link_text('飞天 53%vol 500ml 贵州茅台酒（带杯）').get_attribute('href')
+    add_times = 1
     while True:
-        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         # 对比时间，时间到的话就点击结算
-        if now >= kill_time:
-            browser.refresh()  # 刷新页面
+        if kill_time <= datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'):
+            #  driver.refresh()  # 刷新页面
+            driver.get(item_url)
+            print("已尝试打开商品页!")
+
             while True:
                 try:
-                    #  if browser.find_element_by_id("J_Go"):
-                    #      browser.find_element_by_id("J_Go").click()
-                    #      print("结算成功，准备提交订单")
-                    # 点击提交订单按钮
-                    if browser.find_element_by_link_text('抢购'):
-                        browser.find_element_by_link_text('抢购').click()
-                        print("抢购成功，请尽快付款")
-                        return
-                    if browser.find_element_by_link_text('立即抢购'):
-                        browser.find_element_by_link_text('立即抢购').click()
-                        print("抢购成功，请尽快付款")
+                    while add_times > 0:
+                        add = driver.find_element_by_css_selector('a.btn-add')
+                        if add:
+                            add.click()
+                            print("商品数量+1")
+                            add_times = add_times - 1
+
+                    if driver.find_element_by_link_text('抢购'):
+                        driver.find_element_by_link_text('抢购').click()
+                        print("点击 抢购 1 次")
                         return
                 except:
-                    #  print("browser error occur!")
                     pass
+
                 i += 1
-                #  print("再次尝试")
                 if i > 500:
                     print("已尝试 500 次,退出!")
                     return
-            #  else:
-            #      time.sleep(0.01)
-
 
 if __name__ == "__main__":
     login()
-    buy('2020-11-11 00:00:00')
+    buy('2020-01-06 10:00:00')
