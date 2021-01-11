@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
-chromedriver_path = r"./chromedriver_linux"
+chromedriver_path = r"../drivers/chromedriver_linux"
 options = webdriver.ChromeOptions()  # 配置 chrome 启动属性
 # 此步骤很重要，设置为开发者模式，防止被各大网站识别出来使用了Selenium
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
