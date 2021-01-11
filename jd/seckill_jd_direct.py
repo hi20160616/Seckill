@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # Key values
 login_url = "javascript:login();"
 watched_url = "https://item.jd.com/100012043978.html"
-kill_sec = '2021-01-11 10:00:00'
+kill_sec = '2021-01-12 10:00:00'
 chromedriver_path = r"../drivers/chromedriver"
 
 options = webdriver.ChromeOptions()  # 配置 chrome 启动属性
@@ -56,8 +56,7 @@ def buy(kill_time):
                 print("数量 增加 1 次")
                 wait.until(
                     EC.presence_of_element_located(
-                        (By.LINK_TEXT, "开始预约"))
-                    #  (By.LINK_TEXT, "开通PLUS立即参与"))
+                        (By.LINK_TEXT, "抢购"))
                 ).click()
                 print("点击 抢购 1 次")
                 b = datetime.now()
