@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 watched_url = "https://yushou.jd.com/member/qualificationList.action"
 link_text = '飞天 53%vol 500ml 贵州茅台酒（带杯）'
 kill_sec = '2021-01-06 10:00:00'
-chromedriver_path = r"../drivers/chromedriver"
+chromedriver_path = r"./drivers/chromedriver"
 wait_login = 30
 
 # Test case

@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 login_url = "javascript:login();"
 watched_url = "https://item.jd.com/100012043978.html"
 kill_sec = '2021-01-11 10:00:00'
-chromedriver_path = r"../drivers/chromedriver.exe"
+chromedriver_path = r"..\\drivers\\chromedriver.exe"
 
 options = webdriver.ChromeOptions()  # 配置 chrome 启动属性
 # 此步骤很重要，设置为开发者模式，防止被各大网站识别出来使用了Selenium

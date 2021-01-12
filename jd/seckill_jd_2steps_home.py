@@ -12,7 +12,7 @@ watched_url = "https://yushou.jd.com/member/qualificationList.action"
 link_text = '飞天 53%vol 500ml 贵州茅台酒（带杯）'
 #  good_url = "https://item.jd.com/100012043978.html"
 kill_sec = '2021-01-08 10:00:00'
-chromedriver_path = r"../drivers/chromedriver"
+chromedriver_path = r"./drivers/chromedriver"
 wait_login = 30
 
 options = webdriver.ChromeOptions()  # 配置 chrome 启动属性
