@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # Config
 login_url = "javascript:login();"
 watched_url = "https://item.jd.com/100012043978.html"
-kill_sec = '2021-01-15 10:00:00'
+kill_sec = '2021-01-18 10:00:00'
 chromedriver_path = r"./drivers/chromedriver"
 
 
@@ -31,7 +31,7 @@ def login():
     ).click()
     print("登录！")
     print("1分钟后开始!")
-    time.sleep(20)
+    time.sleep(30)
     print("开始!")
 
 
@@ -43,7 +43,7 @@ def clickbtn():
     print("数量 增加 1 次")
     wait.until(
         EC.presence_of_element_located(
-            (By.PARTIAL_LINK_TEXT, "抢购"))
+            (By.PARTIAL_LINK_TEXT, "抢"))
     ).click()
     print("点击 抢购 1 次")
 
