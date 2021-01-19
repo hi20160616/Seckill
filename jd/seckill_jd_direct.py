@@ -43,7 +43,7 @@ def clickbtn():
     print("数量 增加 1 次")
     wait.until(
         EC.presence_of_element_located(
-            (By.CSS_SELECTOR, "a#btn-reservation"))
+            (By.LINK_TEXT, "抢购"))
     ).click()
     print("点击 抢购 1 次")
 
@@ -54,8 +54,8 @@ def buy(kill_time, err_count):
     while True:
         # 对比时间，时间到的话就点击结算
         if kill_time <= datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]:
-            time.sleep(0.101)
-            driver.refresh()
+            #  time.sleep(0.101)
+            #  driver.refresh()
             print("刷新!")
             try:
                 clickbtn()
