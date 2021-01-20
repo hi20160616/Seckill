@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # Config
 login_url = "javascript:login();"
 watched_url = "https://item.jd.com/100012043978.html"
-kill_sec = '2021-01-19 10:00:00'
+kill_sec = '2021-01-21 10:00:00'
 chromedriver_path = r"./drivers/chromedriver"
 
 
@@ -55,7 +55,7 @@ def buy(kill_time, err_count):
         # 对比时间，时间到的话就点击结算
         if kill_time <= datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]:
             #  time.sleep(0.101)
-            #  driver.refresh()
+            driver.refresh()
             print("刷新!")
             try:
                 clickbtn()
