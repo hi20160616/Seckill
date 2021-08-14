@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # Config
 login_url = "http://yey.tianshancloud.org:9112/ch_Children/list.jspx"
 watched_url = "http://yey.tianshancloud.org:9112/ch_Children/list.jspx"
-kill_sec = '2021-01-21 10:00:00'
+kill_sec = '2021-08-14 10:00:00'
 chromedriver_path = r"./drivers/chromedriver"
 
 
@@ -39,6 +39,17 @@ def clickbtn():
     print("报名1次")
 
 
+def is_warning():
+    txt = wait.until(
+            EC.presence_of_element_located(
+                (By.XPATH, "//div[@class='modal fade in']/div/div/div/div/p"))
+            )
+    if txt == "不在报名时间内，报名失败。":
+        driver.find_element_by_xpath("//div[@class='modal fade in']/div/div/div/button[@class='btn btn-primary ok']").click()
+        return True
+    
+
+
 def do(kill_time, err_count):
     if err_count == 0:
         return
@@ -50,6 +61,9 @@ def do(kill_time, err_count):
             #  print("刷新!")
             try:
                 clickbtn()
+                #  if is_warning():
+                #      err_count -= 1
+                #      do(kill_time, err_count)
                 return
             except Exception as ex:
                 print(ex)
